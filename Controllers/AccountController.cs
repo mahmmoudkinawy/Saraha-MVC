@@ -39,6 +39,14 @@ public class AccountController : Controller
         return View(registerViewModel);
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logoff()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
+    }
+
     private void AddErros(IdentityResult result)
     {
         foreach (var error in result.Errors)
