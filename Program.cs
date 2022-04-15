@@ -6,6 +6,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SecretsDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<SecretsDbContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
