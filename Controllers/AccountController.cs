@@ -13,7 +13,9 @@ public class AccountController : Controller
 
     [HttpGet]
     public async Task<IActionResult> Register()
-        => View(new RegisterViewModel());
+    {
+        return View(new RegisterViewModel());
+    }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -41,7 +43,8 @@ public class AccountController : Controller
 
     [HttpGet]
     public IActionResult Login()
-        => View(new LoginViewModel());
+       => View(new LoginViewModel());
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]
