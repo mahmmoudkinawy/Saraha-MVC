@@ -6,3 +6,4 @@ global using System.ComponentModel.DataAnnotations;
 global using Secrets.Entities;
 global using Microsoft.AspNetCore.Mvc;
 global using Secrets.ViewModels;
+global using Microsoft.AspNetCore.Authorization;

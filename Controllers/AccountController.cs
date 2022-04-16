@@ -39,6 +39,31 @@ public class AccountController : Controller
         return View(registerViewModel);
     }
 
+    [HttpGet]
+    public IActionResult Login()
+        => View(new LoginViewModel());
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email,
+                loginViewModel.Password, loginViewModel.RememberMe, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Username or Password");
+            }
+        }
+
+        return View(loginViewModel);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logoff()
